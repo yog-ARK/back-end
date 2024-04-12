@@ -1,0 +1,30 @@
+{
+  "name": "vimiga",
+  "version": "1.0.0",
+  "description": "UTS Back End Programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yog-ARK/back-end.git"
+  },
+  "author": "Yoga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yog-ARK/back-end/issues"
+  },
+  "homepage": "https://github.com/yog-ARK/back-end#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "mongoose": "^8.2.4",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
