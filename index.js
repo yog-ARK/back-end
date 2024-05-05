@@ -2,13 +2,16 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
+
+//passport config
+require("./config/passport")(passport);
+
 // using express
 const app = express();
 app.use(express.json());
-
-// Parse URL-encoded bodies for form data
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // port
 const port = process.env.port || 5000;
@@ -29,6 +32,34 @@ mongoose
 // ejs
 app.set("view engine", "ejs");
 
+//bodyparser
+app.use(express.urlencoded({ extended: false }));
+
+// express session middleware
+
+app.use(
+  session({
+    secret: "rahasia",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//connect flash
+app.use(flash());
+
+// global var
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
+
 // static express
 app.use(express.static("public"));
 
@@ -37,10 +68,22 @@ app.use("/", mainRoute);
 app.use("/api/room", roomRoute);
 app.use("/api/explore", exploreRoute);
 app.use("/api/about", aboutRoute);
+app.use("/users", require("./routes/users"));
 
 // login
 app.get("/login", (req, res) => {
-  res.render("login") /*, { title: "VIMIGA | Login" }*/;
+  res.render("login");
+});
+
+// register
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+// payment
+app.get("/payment", (req, res) => {
+  const username = req.user ? req.user.name : "Guest";
+  res.render("payment", { title: "VIMIGA | Payment", username: username });
 });
 
 const aboutModel = require("./models/about");

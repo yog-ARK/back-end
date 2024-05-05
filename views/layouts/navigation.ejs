@@ -1,3 +1,17 @@
+<iframe
+  src="https://f.top4top.io/m_3047q7zp11.mp3"
+  height="0"
+  width="0"
+  allow="autoplay"
+  ;
+  encrypt-media
+  style="display: none"
+>
+</iframe>
+
+<audio autoplay>
+  <source src="assets/Express Cafe.mp3" type="audio/mp3" />
+</audio>
 <header class="header">
   <nav>
     <div class="nav__bar">
@@ -16,11 +30,6 @@
       <li><a href="/explore">Explore</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
-    <!-- Rounded switch -->
-    <label class="switch">
-      <input type="checkbox" />
-      <span class="slider round"></span>
-    </label>
     <a href="/login" class="btn nav__btn">Login</a>
   </nav>
   <div class="section__container header__container" id="home">
@@ -35,20 +44,20 @@
       <span><i class="ri-calendar-2-fill"></i></span>
       <div>
         <label for="check-in">CHECK-IN</label>
-        <input type="text" placeholder="Check In" />
+        <input type="text" placeholder="6/5/2024" />
       </div>
     </div>
     <div class="input__group">
       <span><i class="ri-calendar-2-fill"></i></span>
       <div>
         <label for="check-out">CHECK-OUT</label>
-        <input type="text" placeholder="Check Out" />
+        <input type="text" placeholder="7/5/2024" />
       </div>
     </div>
     <div class="input__group">
       <span><i class="ri-user-fill"></i></span>
       <div>
-        <label for="guest">Guest</label>
+        <label for="guest"><%= username %></label>
         <input type="text" placeholder="User" />
       </div>
     </div>
