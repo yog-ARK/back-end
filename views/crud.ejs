@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operations</title>
+</head>
+<body>
+    <h1>CRUD Operations</h1>
+    <h2>Create</h2>
+    <form id="createForm">
+        <label for="type">Type:</label><br>
+<select id="type">
+    <option value="Deluxe Ocean View">Deluxe Ocean View</option>
+    <option value="Executive Cityscape Room">Executive Cityscape Room</option>
+    <option value="Family Garden Retreat">Family Garden Retreat</option>
+</select><br><br>
+        <div id="typeError" style="color: red;"></div><br>
+        <label for="desc">Description:</label><br>
+        <input type="text" id="desc"><br><br>
+        <label for="no">Hotel Number:</label><br>
+        <input type="number" id="no"><br><br>
+        <label for="price">Price:</label><br>
+        <input type="number" id="price"><br><br>
+        <button type="submit">Create</button>
+    </form>
+    
+    <h2>Read</h2>
+    <ul id="dataList"></ul>
+
+    <h2>Update</h2>
+    <form id="updateForm">
+        <label for="updateId">ID of Data to Update:</label><br>
+        <input type="text" id="updateId"><br><br>
+        <label for="updatetype">New type:</label><br>
+        <input type="text" id="updatetype"><br><br>
+        <label for="updatedesc">New desc:</label><br>
+        <input type="text" id="updatedesc"><br><br>
+        <label for="updateno">New Hotel Number:</label><br>
+        <input type="number" id="updateno"><br><br>
+        <label for="updateprice">New price:</label><br>
+        <input type="number" id="updateprice"><br><br>
+        <button type="submit">Update</button>
+    </form>
+
+    <h2>Delete</h2>
+    <form id="deleteForm">
+        <label for="deleteId">ID of Data to Delete:</label><br>
+        <input type="text" id="deleteId" type="id"><br><br>
+        <button type="submit">Delete</button>
+    </form>
+
+    <script>
+        // Function to fetch data from the server and display it
+        async function fetchData() {
+            const response = await fetch('/api/room');
+            const data = await response.json();
+            const dataList = document.getElementById('dataList');
+            dataList.innerHTML = '';
+            data.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `Type: ${item.type}, Description: ${item.desc}, Hotel Number: ${item.no}, Price: ${item.price}`;
+                dataList.appendChild(li);
+            });
+        }
+
+        // Function to validate form fields
+        function validateForm() {
+            let isValid = true;
+            const type = document.getElementById('type').value.trim();
+            const typeError = document.getElementById('typeError');
+
+            // Check if type is empty
+            if (type === '') {
+                typeError.textContent = 'Please choose the type';
+                isValid = false;
+            } else {
+                typeError.textContent = '';
+            }
+
+            return isValid;
+        }
+
+        // Function to handle form submission for creating new data
+        document.getElementById('createForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                return;
+            }
+
+            const type = document.getElementById('type').value;
+            const desc = document.getElementById('desc').value;
+            const no = document.getElementById('no').value;
+            const price = document.getElementById('price').value;
+            const response = await fetch('/api/room', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ type, desc, no, price })
+            });
+            fetchData();
+        });
+
+        // Function to handle form submission for updating existing data
+        document.getElementById('updateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('updateId').value;
+            const type = document.getElementById('updatetype').value;
+            const desc = document.getElementById('updatedesc').value;
+            const no = document.getElementById('updateno').value;
+            const price = document.getElementById('updateprice').value;
+            const response = await fetch(`/api/room/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ type, desc, no, price })
+            });
+            fetchData();
+        });
+
+        // Function to handle form submission for deleting data
+        document.getElementById('deleteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('deleteId').value;
+            const response = await fetch(`/api/room/${id}`, {
+                method: 'DELETE'
+            });
+            fetchData();
+        });
+
+        // Fetch initial data when the page loads
+        fetchData();
+    </script>
+</body>
+</html>

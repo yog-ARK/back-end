@@ -2,15 +2,19 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
-const session = require("express-session");
 // using express
 const app = express();
+app.use(express.json());
 
 // port
 const port = process.env.port || 5000;
 
 // module custom
-const db = require("./config/keys.js").mongoURL;
+const db = require("./config/keys.js").mongoURL; // url mongodb
+const mainRoute = require("./routes/main.route.js"); // main room
+const roomRoute = require("./routes/room.route.js"); // route room
+const exploreRoute = require("./routes/explore.route.js"); // route explore
+const aboutRoute = require("./routes/about.route.js"); // route about
 
 // mongoose connect
 mongoose
@@ -24,39 +28,20 @@ app.set("view engine", "ejs");
 // static express
 app.use(express.static("public"));
 
-// index/Home
-app.get("/", (req, res) => {
-    res.render("index")/*, { title: "VIMIGA | Resort and Hotel" }*/;
-});
-
-// about
-app.get("/about", (req, res) => {
-    res.render("about")/*, { title: "VIMIGA | About" }*/;
-});
-
-// room
-app.get("/room", (req, res) => {
-    res.render("room")/*, { title: "VIMIGA | Rooms" }*/;
-});
-
-// service
-app.get("/service", (req, res) => {
-    res.render("service")/*, { title: "VIMIGA | Services" }*/;
-});
-
-// explore
-app.get("/explore", (req, res) => {
-    res.render("explore")/*, { title: "VIMIGA | Explore" }*/;
-});
-
-// contact
-app.get("/contact", (req, res) => {
-    res.render("contact")/*, { title: "VIMIGA | Contact" }*/;
-});
+// routes
+app.use("/", mainRoute);
+app.use("/api/room", roomRoute);
+app.use("/api/explore", exploreRoute);
+app.use("/api/about", aboutRoute);
 
 // login
 app.get("/login", (req, res) => {
     res.render("login")/*, { title: "VIMIGA | Login" }*/;
+});
+
+// crud TEST
+app.get("/crud", (req, res) => {
+    res.render("crud")/*, { title: "VIMIGA | Test" }*/;
 });
 
 app.listen(port, () => {
