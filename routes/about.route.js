@@ -1,10 +1,16 @@
-const express = require('express');
-const test = require('../models/about.js');
+const express = require("express");
+const test = require("../models/about.js");
 const router = express.Router();
-const {getAbout,getAboutById,addAbout,changeAboutById,deleteAbout} = require('../controllers/about.controller.js');
+const {
+  getAbout,
+  getAboutById,
+  addAbout,
+  changeAboutById,
+  deleteAbout,
+} = require("../controllers/about.controller.js");
 
 // get
-router.get('/', getAbout);
+router.get("/", getAbout);
 // get by id
 router.get("/:id", getAboutById);
 // add

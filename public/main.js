@@ -14,7 +14,7 @@ navLinks.addEventListener("click", () => {
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
-document.getElementById("about").addEventListener("click", function() {
+document.getElementById("about").addEventListener("click", function () {
   // Mengarahkan pengguna ke halaman lain
   window.location.href = "about.html";
 });
@@ -35,7 +35,7 @@ ScrollReveal().reveal(".header__container h1", {
   delay: 500,
 });
 
-// about container delay berurutan 
+// about container delay berurutan
 // foto bangku about us
 ScrollReveal().reveal(".about__image img", {
   ...scrollRevealOption,

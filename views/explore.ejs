@@ -5,19 +5,19 @@
     <%- include('layouts/navigation.ejs') %>
 
     <section class="explore" id="explore">
-        <p class="section__subheader">EXPLORE</p>
-        <h2 class="section__header">What's New Today.</h2>
-        <div class="explore__bg">
-          <div class="explore__content">
-            <p class="section__description">10th MAR 2023</p>
-            <h4>A New Menu Is Available In Our Hotel.</h4>
-            <button class="btn">Continue</button>
-          </div>
+      <p class="section__subheader">EXPLORE</p>
+      <h2 class="section__header">What's New Today.</h2>
+      <div class="explore__bg">
+        <% explore.forEach(explore => { %>
+        <div class="explore__content">
+          <p class="section__description"><%= explore.created %></p>
+          <h4><%= explore.title %></h4>
+          <h5><%= explore.desc %></h5>
         </div>
-      </section>
+        <% }); %>
+      </div>
+    </section>
 
-      <%- include('layouts/footer.ejs') %>
-    </body>
-  </html>
-
- 
+    <%- include('layouts/footer.ejs') %>
+  </body>
+</html>

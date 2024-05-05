@@ -4,41 +4,39 @@
   <body>
     <%- include('layouts/navigation.ejs') %>
 
-<section class="section__container room__container">
-    <p class="section__subheader">OUR LIVING ROOM</p>
-    <h2 class="section__header">CONVINENT PLACE.</h2>
-    <div class="room__grid">
-    <% rooms.forEach(room => { %>
-      <div class="room__card">
-        <div class="room__card__image">
-          <% if(room.type === 'Deluxe Ocean View') { %>
+    <section class="section__container room__container">
+      <p class="section__subheader">OUR LIVING ROOM</p>
+      <h2 class="section__header">CONVINENT PLACE.</h2>
+      <div class="room__grid">
+        <% rooms.forEach(room => { %>
+        <div class="room__card">
+          <div class="room__card__image">
+            <% if(room.type === 'Deluxe Ocean View') { %>
             <img src="assets/room-1.jpg" alt="room" />
-          <% } else if(room.type === 'Executive Cityscape Room') { %>
+            <% } else if(room.type === 'Executive Cityscape Room') { %>
             <img src="assets/room-2.jpg" alt="room" />
-          <% } else if(room.type === 'Family Garden Retreat') { %>
+            <% } else if(room.type === 'Family Garden Retreat') { %>
             <img src="assets/room-3.jpg" alt="room" />
-          <% } else { %>
+            <% } else { %>
             <img src="assets/default-room-image.jpg" alt="room" />
-          <% } %>
-          <div class="room__card__icons">
-            <span><i class="ri-heart-fill"></i></span>
-            <span><i class="ri-paint-fill"></i></span>
-            <span><i class="ri-shield-star-line"></i></span>
+            <% } %>
+            <div class="room__card__icons">
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-paint-fill"></i></span>
+              <span><i class="ri-shield-star-line"></i></span>
+            </div>
+          </div>
+          <div class="room__card__details">
+            <h4><%= room.type %></h4>
+            <p><%= room.desc %></p>
+            <h5>Starting from <span>$<%= room.price %>/night</span></h5>
+            <button class="btn">Book Now</button>
           </div>
         </div>
-        <div class="room__card__details">
-          <h4><%= room.type %></h4>
-          <p>
-            <%= room.desc %>
-          </p>
-          <h5>Starting from <span>$<%= room.price %>/night</span></h5>
-          <button class="btn">Book Now</button>
-        </div>
+        <% }); %>
       </div>
-    <% }); %>
-    </div>
-  </section>
+    </section>
 
-  <%- include('layouts/footer.ejs') %>
-</body>
+    <%- include('layouts/footer.ejs') %>
+  </body>
 </html>

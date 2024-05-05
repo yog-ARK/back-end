@@ -1,28 +1,25 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const exploreSchema = mongoose.Schema({
+const exploreSchema = mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     desc: {
-        type: Number,
-        required: true
-    },
-    image: {
-        type: String,
-        required: false
+      type: String,
+      required: true,
     },
     created: {
-        type: Date,
-        default: Date.now
+      type: Date,
+      default: Date.now,
     },
-},
-    {
-        timestamps: true
-    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
-const Explore = mongoose.model('Explore', exploreSchema);
+const Explore = mongoose.model("Explore", exploreSchema);
 
 module.exports = Explore;

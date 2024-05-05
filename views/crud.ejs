@@ -1,138 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD Operations</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>CRUD Operations</h1>
     <h2>Create</h2>
     <form id="createForm">
-        <label for="type">Type:</label><br>
-<select id="type">
-    <option value="Deluxe Ocean View">Deluxe Ocean View</option>
-    <option value="Executive Cityscape Room">Executive Cityscape Room</option>
-    <option value="Family Garden Retreat">Family Garden Retreat</option>
-</select><br><br>
-        <div id="typeError" style="color: red;"></div><br>
-        <label for="desc">Description:</label><br>
-        <input type="text" id="desc"><br><br>
-        <label for="no">Hotel Number:</label><br>
-        <input type="number" id="no"><br><br>
-        <label for="price">Price:</label><br>
-        <input type="number" id="price"><br><br>
-        <button type="submit">Create</button>
+      <label for="type">Type:</label><br />
+      <select id="type">
+        <option value="Deluxe Ocean View">Deluxe Ocean View</option>
+        <option value="Executive Cityscape Room">
+          Executive Cityscape Room
+        </option>
+        <option value="Family Garden Retreat">
+          Family Garden Retreat
+        </option></select
+      ><br /><br />
+      <div id="typeError" style="color: red"></div>
+      <br />
+      <label for="desc">Description:</label><br />
+      <input type="text" id="desc" /><br /><br />
+      <label for="no">Hotel Number:</label><br />
+      <input type="number" id="no" /><br /><br />
+      <label for="price">Price:</label><br />
+      <input type="number" id="price" /><br /><br />
+      <button type="submit">Create</button>
     </form>
-    
-    <h2>Read</h2>
+
+    <h2>Read Room</h2>
     <ul id="dataList"></ul>
 
     <h2>Update</h2>
     <form id="updateForm">
-        <label for="updateId">ID of Data to Update:</label><br>
-        <input type="text" id="updateId"><br><br>
-        <label for="updatetype">New type:</label><br>
-        <input type="text" id="updatetype"><br><br>
-        <label for="updatedesc">New desc:</label><br>
-        <input type="text" id="updatedesc"><br><br>
-        <label for="updateno">New Hotel Number:</label><br>
-        <input type="number" id="updateno"><br><br>
-        <label for="updateprice">New price:</label><br>
-        <input type="number" id="updateprice"><br><br>
-        <button type="submit">Update</button>
+      <label for="updateId">ID of Data to Update:</label><br />
+      <input type="text" id="updateId" /><br /><br />
+      <label for="updatetype">New type:</label><br />
+      <select id="updatetype">
+        <option value="Deluxe Ocean View">Deluxe Ocean View</option>
+        <option value="Executive Cityscape Room">
+          Executive Cityscape Room
+        </option>
+        <option value="Family Garden Retreat">
+          Family Garden Retreat
+        </option></select
+      ><br /><br />
+      <label for="updatedesc">New desc:</label><br />
+      <input type="text" id="updatedesc" /><br /><br />
+      <label for="updateno">New Hotel Number:</label><br />
+      <input type="number" id="updateno" /><br /><br />
+      <label for="updateprice">New price:</label><br />
+      <input type="number" id="updateprice" /><br /><br />
+      <button type="submit">Update</button>
     </form>
 
     <h2>Delete</h2>
     <form id="deleteForm">
-        <label for="deleteId">ID of Data to Delete:</label><br>
-        <input type="text" id="deleteId" type="id"><br><br>
-        <button type="submit">Delete</button>
+      <label for="deleteId">ID of Data to Delete:</label><br />
+      <input type="text" id="deleteId" type="id" /><br /><br />
+      <button type="submit">Delete</button>
+    </form>
+
+    <h2>About</h2>
+    <form id="about">
+      <label for="titleAbout">Title:</label><br />
+      <input type="text" id="titleAbout" /><br /><br />
+      <label for="descAbout">Description:</label><br />
+      <input type="text" id="descAbout" /><br /><br />
+      <button type="submit">Update</button>
+    </form>
+
+    <h2>About</h2>
+    <ul id="dataAbout"></ul>
+
+    <h2>Create Explore/News</h2>
+    <form id="createExplore">
+      <label for="title2">Title:</label><br />
+      <input type="text" id="title2" /><br /><br />
+      <label for="desc2">Description:</label><br />
+      <input type="text" id="desc2" /><br /><br />
+      <button type="submit">Create</button>
+    </form>
+
+    <h2>Read Explore</h2>
+    <ul id="dataExplore"></ul>
+
+    <h2>Delete</h2>
+    <form id="deleteExplore">
+      <label for="deleteId2">ID of Data to Delete:</label><br />
+      <input type="text" id="deleteId2" type="id" /><br /><br />
+      <button type="submit">Delete</button>
     </form>
 
     <script>
-        // Function to fetch data from the server and display it
-        async function fetchData() {
-            const response = await fetch('/api/room');
-            const data = await response.json();
-            const dataList = document.getElementById('dataList');
-            dataList.innerHTML = '';
-            data.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `Type: ${item.type}, Description: ${item.desc}, Hotel Number: ${item.no}, Price: ${item.price}`;
-                dataList.appendChild(li);
-            });
-        }
+      // Function to fetch data from the server and display it
+      async function fetchData() {
+        const response = await fetch("/api/room");
+        const response2 = await fetch("/api/explore");
+        const response3 = await fetch("/api/about");
+        const data = await response.json();
+        const data2 = await response2.json();
+        const data3 = await response3.json();
+        const dataList = document.getElementById("dataList");
+        const dataExplore = document.getElementById("dataExplore");
+        const dataAbout = document.getElementById("dataAbout");
+        dataList.innerHTML = "";
+        dataExplore.innerHTML = "";
+        dataAbout.innerHTML = "";
+        data.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = `ID: ${item._id}, Type: ${item.type}, Description: ${item.desc}, Hotel Number: ${item.no}, Price: ${item.price}`;
+          dataList.appendChild(li);
+        });
+        data2.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = `ID: ${item._id}, Title: ${item.title}, Description: ${item.desc}`;
+          dataExplore.appendChild(li);
+        });
+        data3.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = `Title: ${item.titled}, Description: ${item.desc}`;
+          dataAbout.appendChild(li);
+        });
+      }
 
-        // Function to validate form fields
-        function validateForm() {
-            let isValid = true;
-            const type = document.getElementById('type').value.trim();
-            const typeError = document.getElementById('typeError');
-
-            // Check if type is empty
-            if (type === '') {
-                typeError.textContent = 'Please choose the type';
-                isValid = false;
-            } else {
-                typeError.textContent = '';
-            }
-
-            return isValid;
-        }
-
-        // Function to handle form submission for creating new data
-        document.getElementById('createForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            if (!validateForm()) {
-                return;
-            }
-
-            const type = document.getElementById('type').value;
-            const desc = document.getElementById('desc').value;
-            const no = document.getElementById('no').value;
-            const price = document.getElementById('price').value;
-            const response = await fetch('/api/room', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ type, desc, no, price })
-            });
-            fetchData();
+      // Function to handle form submission for creating new data
+      document
+        .getElementById("createForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const type = document.getElementById("type").value;
+          const desc = document.getElementById("desc").value;
+          const no = document.getElementById("no").value;
+          const price = document.getElementById("price").value;
+          const response = await fetch("/api/room", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ type, desc, no, price }),
+          });
+          fetchData();
+        });
+      document
+        .getElementById("createExplore")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const title = document.getElementById("title2").value;
+          const desc = document.getElementById("desc2").value;
+          const response2 = await fetch("/api/explore", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, desc }),
+          });
+          fetchData();
         });
 
-        // Function to handle form submission for updating existing data
-        document.getElementById('updateForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const id = document.getElementById('updateId').value;
-            const type = document.getElementById('updatetype').value;
-            const desc = document.getElementById('updatedesc').value;
-            const no = document.getElementById('updateno').value;
-            const price = document.getElementById('updateprice').value;
-            const response = await fetch(`/api/room/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ type, desc, no, price })
-            });
-            fetchData();
+      // Function to handle form submission for updating existing data
+      document
+        .getElementById("updateForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("updateId").value;
+          const type = document.getElementById("updatetype").value;
+          const desc = document.getElementById("updatedesc").value;
+          const no = document.getElementById("updateno").value;
+          const price = document.getElementById("updateprice").value;
+          const response = await fetch(`/api/room/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ type, desc, no, price }),
+          });
+          fetchData();
         });
-
-        // Function to handle form submission for deleting data
-        document.getElementById('deleteForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const id = document.getElementById('deleteId').value;
-            const response = await fetch(`/api/room/${id}`, {
-                method: 'DELETE'
-            });
-            fetchData();
+      document.getElementById("about").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const titled = document.getElementById("titleAbout").value;
+        const desc = document.getElementById("descAbout").value;
+        const response = await fetch(`/api/about/6635ef5d2fbcd7f64abe36ec`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ titled, desc }),
         });
-
-        // Fetch initial data when the page loads
         fetchData();
+      });
+
+      // Function to handle form submission for deleting data
+      document
+        .getElementById("deleteForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("deleteId").value;
+          const response = await fetch(`/api/room/${id}`, {
+            method: "DELETE",
+          });
+          fetchData();
+        });
+      document
+        .getElementById("deleteExplore")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = document.getElementById("deleteId2").value;
+          const response = await fetch(`/api/explore/${id}`, {
+            method: "DELETE",
+          });
+          fetchData();
+        });
+
+      // Fetch initial data when the page loads
+      fetchData();
     </script>
-</body>
+  </body>
 </html>

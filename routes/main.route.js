@@ -1,16 +1,23 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {index,about,room,service,explore,contact} = require('../controllers/main.controller.js');
+const {
+  index,
+  about,
+  room,
+  service,
+  explore,
+  contact,
+} = require("../controllers/main.controller.js");
 
 // index/Home
-router.get('/', index);
-// get by id
+router.get("/", index);
+// about
 router.get("/about", about);
-// add
+// room
 router.get("/room", room);
-// update
+// service
 router.get("/service", service);
-// delete
+// explore
 router.get("/explore", explore);
 // contact
 router.get("/contact", contact);

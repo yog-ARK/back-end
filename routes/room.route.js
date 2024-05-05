@@ -1,10 +1,16 @@
-const express = require('express');
-const test = require('../models/room.js');
+const express = require("express");
+const test = require("../models/room.js");
 const router = express.Router();
-const {getRoom,getRoomById,addRoom,changeRoomById,deleteRoom} = require('../controllers/room.controller.js');
+const {
+  getRoom,
+  getRoomById,
+  addRoom,
+  changeRoomById,
+  deleteRoom,
+} = require("../controllers/room.controller.js");
 
 // get
-router.get('/', getRoom);
+router.get("/", getRoom);
 // get by id
 router.get("/:id", getRoomById);
 // add

@@ -101,7 +101,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.header nav{
+.header nav {
   position: fixed;
 }
 
@@ -423,10 +423,11 @@ nav {
   margin-top: 4rem;
   padding-block: 3rem;
   display: grid;
-  grid-template-columns:
-    minmax(1rem, 1fr)
-    minmax(0, var(--max-width))
-    minmax(1rem, 1fr);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(calc(var(--max-width) / 3 - 2rem), 1fr)
+  );
+  gap: 2rem;
   background-image: url("assets/explore1.jpg");
   background-position: center center;
   background-size: cover;
@@ -666,7 +667,6 @@ nav {
   height: 100px;
   border-radius: 50%;
   margin: 0 auto;
-  
 }
 
 .kartu p {
@@ -694,7 +694,7 @@ nav {
   border-radius: 50%;
 }
 
-.tampialn-deskripsi{
+.tampialn-deskripsi {
   background-color: #fff;
   border-radius: 8px;
   padding: 10px;
@@ -732,69 +732,68 @@ nav {
 
 /* Ganti warna tombol dan tambahkan efek hover */
 .beli-button {
-background-color: #34db55;
-border: none;
-padding: 15px 20px;
-border-radius: 5px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-align-items: center;
-color: #fff;
-text-decoration: none;
-align-items: center;
+  background-color: #34db55;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
 }
 
 /* Efek hover */
-.beli-button:hover{
-background-color: #5ae175;
+.beli-button:hover {
+  background-color: #5ae175;
 }
 
 /* Animasi saat tombol ditekan */
 .beli-button:active,
 .keranjang-button:active {
-transform: translateY(2px);
+  transform: translateY(2px);
 }
 
 /* Mengatur gambar di dalam tombol */
 .keranjang-button img {
-width: 25px;
-height: 25px;
+  width: 25px;
+  height: 25px;
 }
 
 .keranjang-button {
-background-color: #ffffff;
-border: none;
-padding: 15px 200px;
-border-radius: 5px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-width: 10px;
-color: #000000;
-text-decoration: none;
-align-items: center;
-border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  border: none;
+  padding: 15px 200px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 10px;
+  color: #000000;
+  text-decoration: none;
+  align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .keranjang-button:hover {
-background-color: #5ae175;
+  background-color: #5ae175;
 }
 
 .harga {
-font-weight: bolder;
-color: #00a321;
-font-size:larger
+  font-weight: bolder;
+  color: #00a321;
+  font-size: larger;
 }
 
-.logo1{
+.logo1 {
   max-width: 150px;
   margin-left: 30px;
 }
 
-.maps{
+.maps {
   width: 400px;
   height: 1000px;
 }
-
 
 /* Theme button */
 /* The switch - the box around the slider */
@@ -822,8 +821,8 @@ font-size:larger
   bottom: 0;
   font-size: 15px;
   background-color: hsl(214, 100%, 67%);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -835,8 +834,8 @@ font-size:larger
   bottom: 4px;
   background-color: white;
   background-image: url(assets/sun.png);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -844,7 +843,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
