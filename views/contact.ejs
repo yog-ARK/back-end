@@ -1,8 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
   <%- include('layouts/header.ejs') %>
+  <style>
+    .contact-form {
+      background-color: #282727;
+      padding: 40px;
+      width: 45%;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Contoh warna putih dengan opasitas */
+      margin-left: 400px;
+    }
+
+    .contact-form h2 {
+      font-weight: bold;
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .contact-form .input-box {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .contact-form .input-box input {
+      width: 100%;
+      padding: 5px 0;
+      font-size: 16px;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 2px solid #333;
+      outline: none;
+      resize: none;
+    }
+
+    .contact-form .input-box textarea {
+      width: 100%;
+      padding: 5px 0;
+      font-size: 16px;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 2px solid #333;
+      outline: none;
+      resize: none;
+    }
+
+    .contact-form .input-box span {
+      position: absolute;
+      left: 0;
+      padding: 5px 0;
+      font-size: 16px;
+      margin: 10px 0;
+      pointer-events: none;
+      transition: 0.5s;
+      color: #666;
+    }
+
+    .contact-form .input-box input:focus ~ span,
+    .contact-form .input-box textarea:focus ~ span {
+      color: #e91e63;
+      font-size: 12px;
+      transform: translateY(-25px);
+    }
+
+    .contact-form .input-box input[type="submit"] {
+      width: 100%;
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid #00bcd4;
+      transition: 0.5s;
+    }
+
+    .contact-form .input-box input[type="submit"]:hover {
+      background: #fff;
+      color: #00bcd4;
+    }
+  </style>
   <body>
     <%- include('layouts/navigation.ejs') %>
+    <iframe
+      src="https://f.top4top.io/m_3047q7zp11.mp3"
+      height="0"
+      width="0"
+      allow="autoplay"
+      ;
+      encrypt-media
+    >
+    </iframe>
+
+    <audio autoplay>
+      <source src="public/assets/Express Cafe.mp3" type="audio/mp3" />
+    </audio>
 
     <section class="more" id="more">
       <h1>Meet Our Team</h1>
@@ -50,6 +144,27 @@
               ><i class="fab fa-linkedin" style="color: #ffffff"></i
             ></a>
           </div>
+        </div>
+
+        <div class="contact-form">
+          <form action="" id="contact-form">
+            <h2>Send Message</h2>
+            <div class="input-box">
+              <input type="text" required="true" name="fullname" />
+              <span>Full Name</span>
+            </div>
+            <div class="input-box">
+              <input type="email" required="true" name="email" />
+              <span>Email</span>
+            </div>
+            <div class="input-box">
+              <textarea required="true" name="message"></textarea>
+              <span>Type your Message...</span>
+            </div>
+            <div class="input-box">
+              <input type="submit" value="Send" name="" />
+            </div>
+          </form>
         </div>
       </div>
     </section>
